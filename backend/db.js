@@ -3,7 +3,10 @@ mongoose.connect("mongodb+srv://sankhadiproy23:nqou7frIgFrXYJ71@cluster0.czznsuk
 const todoSchema = mongoose.Schema({
     title: String,
     description: String,
-    completed: Boolean
+    completed: {
+        type: Boolean,
+        default: false
+    }
 })
 const todo = mongoose.model('todos', todoSchema);
 module.exports = {
