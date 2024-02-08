@@ -13,11 +13,16 @@ export function Todos({ todos }) {
                     onClick={async () => {
                         try {
                             const contentLength = JSON.stringify({ completed: true }).length;
-                            await axios.put(`http://localhost:3000/completed`, { completed: true }, {
-                                headers: {
-                                    'Content-Length': contentLength
+                            await axios.put(`http://localhost:3000/completed`,
+                                {
+                                    id: todo._id,
+                                    completed: !todo.completed
                                 }
-                            })
+                                , {
+                                    headers: {
+                                        'Content-Length': contentLength
+                                    }
+                                })
                         } catch (error) {
                             console.error(error);
                         }

@@ -17,7 +17,7 @@ function App() {
       catch (e) {
         console.log(e.message);
       }
-    }, 100000);
+    }, 1000);
   }, [])
 
   return (

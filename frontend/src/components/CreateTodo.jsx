@@ -19,7 +19,6 @@ export function CreateTodo() {
         }}></input> <br />
 
         <button className="borderLine text-neutral-950 border-solid border-2 border-sky-500 bg-slate-300" onClick={() => {
-            // have to do axios 
             fetch("http://localhost:3000/todo", {
                 method: "POST",
                 body: JSON.stringify({

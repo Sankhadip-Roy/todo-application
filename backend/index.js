@@ -12,7 +12,7 @@ app.post('/todo', async (req, res) => {
     const createPayload = req.body;
     const parsedPayload = createTodo.safeParse(createPayload);
     if (!parsedPayload.success) {
-        req.status(411).json({
+        res.status(411).json({
             msg: "You sent the wrong inputs",
         })
         return;
@@ -35,9 +35,7 @@ app.get('/todos', async (req, res) => {
         todos
     })
 })
-
 app.put('/completed', async (req, res) => {
-    console.log("from /completed")
     const updatePayload = req.body;
     const parsedPayload = updateTodo.safeParse(updatePayload);
     if (!parsedPayload.success) {
@@ -46,12 +44,10 @@ app.put('/completed', async (req, res) => {
         })
         return;
     }
-    await todo.update({
-        _id: res._id
-    }, {
-        completed: req.completed
-    })
-    req.json({
+    const id = req.body.id;
+    const completed = req.body.completed;
+    await todo.findByIdAndUpdate(id, { completed });
+    res.json({
         msg: "Todo marked as completed"
     })
 })
